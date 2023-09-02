@@ -9,6 +9,8 @@ import { PlayerState } from '../models/player.model';
 export class PlayerService {
   audio: HTMLAudioElement = new Audio();
 
+  events = ['play', 'playing', 'pause', 'timeupdate', 'ended', 'error'];
+
   private state: PlayerState = {
     record: null,
     playing: false,
@@ -21,13 +23,56 @@ export class PlayerService {
     this.state,
   );
 
-  timeUpdateHandler = () => {
-    this.state.currentTime = this.audio.currentTime;
+  private handler: EventListener = (event) => {
+    switch (event.type) {
+      case 'play':
+        this.state.playing = true;
+        break;
+      case 'playing':
+        this.state.playing = true;
+        break;
+      case 'pause':
+        this.state.playing = false;
+        break;
+      case 'timeupdate':
+        this.state.currentTime = this.audio.currentTime;
+        break;
+      case 'ended':
+        this.state.playing = false;
+        this.state.currentTime = 0;
+        break;
+      case 'error':
+        this.state = {
+          record: null,
+          playing: false,
+          volume: 0.1,
+          duration: undefined,
+          currentTime: undefined,
+        };
+        break;
+    }
   };
+
+  private addEvents(
+    element: HTMLAudioElement,
+    events: string[],
+    handler: EventListener,
+  ) {
+    events.forEach((event) => element.addEventListener(event, handler));
+  }
+
+  private removeEvents(
+    element: HTMLAudioElement,
+    events: string[],
+    handler: EventListener,
+  ) {
+    events.forEach((event) => element.removeEventListener(event, handler));
+  }
 
   play(item: RecordItem): void {
     this.audio.src = item.url;
     this.audio.volume = this.state.volume;
+    this.audio.currentTime = 168;
     this.audio
       .play()
       .then(() => {
@@ -35,7 +80,7 @@ export class PlayerService {
         this.state.record = item;
         this.state.playing = true;
         this.state.duration = this.audio.duration;
-        this.audio.addEventListener('timeupdate', this.timeUpdateHandler);
+        this.addEvents(this.audio, this.events, this.handler);
       })
       .catch((error) => {
         console.error('unable to load', item.name, item.url);
@@ -46,12 +91,13 @@ export class PlayerService {
   continue() {
     this.audio.play();
     this.state.playing = true;
+    this.addEvents(this.audio, this.events, this.handler);
   }
 
   pause() {
     this.audio.pause();
     this.state.playing = false;
-    this.audio.removeEventListener('timeupdate', this.timeUpdateHandler);
+    this.removeEvents(this.audio, this.events, this.handler);
   }
 
   setVolume(value: number) {
