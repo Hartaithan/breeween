@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { RecordItem } from 'src/app/models/record.model';
 import { RecordService } from 'src/app/services/records.service';
@@ -10,15 +11,17 @@ import { RecordService } from 'src/app/services/records.service';
 })
 export class TableComponent implements OnInit, OnDestroy {
   isLoading = true;
-  list: RecordItem[] = [];
   subscription: Subscription | null = null;
+
+  displayedColumns: string[] = ['id', 'name', 'url'];
+  dataSource = new MatTableDataSource<RecordItem>([]);
 
   constructor(private records: RecordService) {}
 
   ngOnInit() {
     this.subscription = this.records.getRecords().subscribe((list) => {
       this.isLoading = false;
-      this.list = list;
+      this.dataSource.data = list;
     });
   }
 

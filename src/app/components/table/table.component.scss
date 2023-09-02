@@ -1,0 +1,18 @@
+:host {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mdc-data-table {
+  &__table {
+    background-color: #1e1e1e;
+  }
+  &__cell + .mat-column-image {
+    display: flex;
+    align-items: center;
+  }
+  &__cell + .loader {
+    display: unset;
+  }
+}
