@@ -9,7 +9,15 @@ import { PlayerState } from '../models/player.model';
 export class PlayerService {
   audio: HTMLAudioElement = new Audio();
 
-  events = ['play', 'playing', 'pause', 'timeupdate', 'ended', 'error'];
+  events = [
+    'play',
+    'playing',
+    'pause',
+    'timeupdate',
+    'durationchange',
+    'ended',
+    'error',
+  ];
 
   private state: PlayerState = {
     record: null,
@@ -26,7 +34,7 @@ export class PlayerService {
   private handler: EventListener = (event) => {
     switch (event.type) {
       case 'play':
-        this.state.playing = true;
+        this.state.duration = this.audio.duration;
         break;
       case 'playing':
         this.state.playing = true;
@@ -36,6 +44,9 @@ export class PlayerService {
         break;
       case 'timeupdate':
         this.state.currentTime = this.audio.currentTime;
+        break;
+      case 'durationchange':
+        this.state.duration = this.audio.duration;
         break;
       case 'ended':
         this.state.playing = false;
@@ -72,15 +83,12 @@ export class PlayerService {
   play(item: RecordItem): void {
     this.audio.src = item.url;
     this.audio.volume = this.state.volume;
-    this.audio.currentTime = 168;
+    this.addEvents(this.audio, this.events, this.handler);
     this.audio
       .play()
       .then(() => {
         console.info(item.name, 'is playing...');
         this.state.record = item;
-        this.state.playing = true;
-        this.state.duration = this.audio.duration;
-        this.addEvents(this.audio, this.events, this.handler);
       })
       .catch((error) => {
         console.error('unable to load', item.name, item.url);
@@ -89,9 +97,8 @@ export class PlayerService {
   }
 
   continue() {
-    this.audio.play();
-    this.state.playing = true;
     this.addEvents(this.audio, this.events, this.handler);
+    this.audio.play();
   }
 
   pause() {
