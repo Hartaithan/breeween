@@ -9,7 +9,7 @@
   </ng-container>
   <ng-container matColumnDef="url">
     <mat-header-cell *matHeaderCellDef mat-sort-header>URL</mat-header-cell>
-    <mat-cell *matCellDef="let record">{{ record.url }}</mat-cell>
+    <mat-cell *matCellDef="let record">{{ record.url | filename }}</mat-cell>
   </ng-container>
   <mat-header-row
     *matHeaderRowDef="displayedColumns; sticky: true"
