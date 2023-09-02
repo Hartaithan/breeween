@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { RecordItem } from 'src/app/models/record.model';
+import { PlayerService } from 'src/app/services/player.service';
 import { RecordService } from 'src/app/services/records.service';
 
 @Component({
@@ -14,14 +15,17 @@ export class TableComponent implements OnInit, OnDestroy {
   subscription: Subscription | null = null;
 
   displayedColumns: string[] = ['id', 'name', 'url'];
-  dataSource = new MatTableDataSource<RecordItem>([]);
+  list = new MatTableDataSource<RecordItem>([]);
 
-  constructor(private records: RecordService) {}
+  constructor(
+    private records: RecordService,
+    private player: PlayerService,
+  ) {}
 
   ngOnInit() {
-    this.subscription = this.records.getRecords().subscribe((list) => {
+    this.subscription = this.records.getRecords().subscribe((records) => {
       this.isLoading = false;
-      this.dataSource.data = list;
+      this.list.data = records;
     });
   }
 
@@ -29,5 +33,9 @@ export class TableComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  onRecordClick(record: RecordItem) {
+    this.player.play(record);
   }
 }
