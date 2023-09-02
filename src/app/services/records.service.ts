@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
   CollectionReference,
+  DocumentData,
   Firestore,
   addDoc,
-  collection,
   collectionData,
   deleteDoc,
   doc,
   query,
 } from '@angular/fire/firestore';
-import { DocumentData } from 'rxfire/firestore/interfaces';
+import { collection } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { NewRecordItem, RecordItem } from '../models/record.model';
 
@@ -26,8 +26,8 @@ export class RecordService {
   }
 
   getRecords() {
-    const todosQuery = query(this.recordsCollection);
-    return collectionData(todosQuery, idField) as Observable<RecordItem[]>;
+    const recordsQuery = query(this.recordsCollection);
+    return collectionData(recordsQuery, idField) as Observable<RecordItem[]>;
   }
 
   addTodo(record: NewRecordItem) {
