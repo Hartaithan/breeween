@@ -28,11 +28,19 @@ button.button {
   flex: 1;
 }
 
-.volume-control {
-  display: flex;
-  align-items: center;
-}
-
 .volume {
   margin-right: 12px;
+  &-control {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  & h3 {
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
 }

@@ -1,24 +1,48 @@
-<div class="playback-control">
-  <button class="button">
-    <mat-icon
-      aria-hidden="false"
-      aria-label="play icon"
-      fontIcon="play_arrow"
-    ></mat-icon>
-  </button>
-</div>
-<div class="content">
-  <p>Name</p>
-</div>
-<div class="volume-control">
-  <div class="button volume">
-    <mat-icon
-      aria-hidden="false"
-      aria-label="value icon"
-      fontIcon="volume_up"
-    ></mat-icon>
+<ng-container *ngIf="state && state.record; else empty">
+  <div class="playback-control">
+    <button class="button" (click)="handlePlayback()">
+      <mat-icon
+        *ngIf="state.playing"
+        aria-hidden="false"
+        aria-label="play icon"
+        fontIcon="pause"
+      ></mat-icon>
+      <mat-icon
+        *ngIf="!state.playing"
+        aria-hidden="false"
+        aria-label="play icon"
+        fontIcon="play_arrow"
+      ></mat-icon>
+    </button>
   </div>
-  <mat-slider min="0" max="100" step="1" value="50">
-    <input matSliderThumb />
-  </mat-slider>
-</div>
+  <div class="content">
+    <p>{{ state.record.name }}</p>
+  </div>
+  <div class="volume-control">
+    <div class="button volume">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="value icon"
+        fontIcon="volume_up"
+      ></mat-icon>
+    </div>
+    <mat-slider min="0" max="100" step="1" value="50">
+      <input matSliderThumb />
+    </mat-slider>
+  </div>
+</ng-container>
+<ng-template #empty>
+  <div class="empty">
+    <div class="button volume">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="folder icon"
+        fontIcon="folder_open"
+      ></mat-icon>
+    </div>
+    <div>
+      <h3>Player is empty</h3>
+      <p>Select a recording to play.</p>
+    </div>
+  </div>
+</ng-template>
