@@ -8,16 +8,21 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { TableComponent } from './components/table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
 import { FilenamePipe } from './pipes/filename.pipe';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, FilenamePipe],
+  declarations: [AppComponent, TableComponent, FilenamePipe, PlayerComponent],
   imports: [
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
     MatTableModule,
+    MatIconModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,38 @@
+:host {
+  height: 100px;
+  border-radius: 8px;
+  background-color: #1e1e1e;
+  display: flex;
+  padding: 12px 24px;
+  align-items: center;
+  gap: 12px;
+}
+
+.button {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  background: #343434;
+}
+
+button.button {
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+}
+
+.volume {
+  margin-right: 12px;
+}
