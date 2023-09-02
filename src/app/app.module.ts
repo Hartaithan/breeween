@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FilenamePipe } from './pipes/filename.pipe';
 import { PlayerComponent } from './components/player/player.component';
 
@@ -25,6 +26,7 @@ import { PlayerComponent } from './components/player/player.component';
     MatTableModule,
     MatIconModule,
     MatSliderModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -19,3 +19,11 @@
     (click)="onRecordClick(row)"
   ></mat-row>
 </mat-table>
+<div *ngIf="isLoading" class="loader">
+  <mat-progress-spinner
+    *ngIf="isLoading"
+    color="primary"
+    mode="indeterminate"
+    [diameter]="40"
+  />
+</div>
