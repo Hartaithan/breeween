@@ -17,6 +17,7 @@
   </div>
   <div class="content">
     <p>{{ state.record.name }}</p>
+    <p>{{ state.currentTime | duration }} / {{ state.duration | duration }}</p>
   </div>
   <div class="volume-control">
     <div class="button volume">
@@ -26,8 +27,12 @@
         fontIcon="volume_up"
       ></mat-icon>
     </div>
-    <mat-slider min="0" max="1" step="0.10">
-      <input matSliderThumb value="0.2" (change)="handleVolume($event)" />
+    <mat-slider min="0" max="1" step="0.05">
+      <input
+        matSliderThumb
+        [value]="state.volume"
+        (change)="handleVolume($event)"
+      />
     </mat-slider>
   </div>
 </ng-container>

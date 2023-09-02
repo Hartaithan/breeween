@@ -4,6 +4,6 @@ export interface PlayerState {
   record: RecordItem | null;
   playing: boolean;
   volume: number;
-  duration: number | undefined;
-  currentTime: number | undefined;
+  duration?: number;
+  currentTime?: number;
 }

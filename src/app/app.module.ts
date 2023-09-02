@@ -13,10 +13,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FilenamePipe } from './pipes/filename.pipe';
+import { DurationPipe } from './pipes/duration.pipe';
 import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, FilenamePipe, PlayerComponent],
+  declarations: [
+    AppComponent,
+    TableComponent,
+    FilenamePipe,
+    DurationPipe,
+    PlayerComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

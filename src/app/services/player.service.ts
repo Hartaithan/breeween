@@ -12,7 +12,7 @@ export class PlayerService {
   private state: PlayerState = {
     record: null,
     playing: false,
-    volume: 0.2,
+    volume: 0.1,
     duration: undefined,
     currentTime: undefined,
   };
@@ -20,6 +20,10 @@ export class PlayerService {
   private stateChange: BehaviorSubject<PlayerState> = new BehaviorSubject(
     this.state,
   );
+
+  timeUpdateHandler = () => {
+    this.state.currentTime = this.audio.currentTime;
+  };
 
   play(item: RecordItem): void {
     this.audio.src = item.url;
@@ -30,6 +34,8 @@ export class PlayerService {
         console.info(item.name, 'is playing...');
         this.state.record = item;
         this.state.playing = true;
+        this.state.duration = this.audio.duration;
+        this.audio.addEventListener('timeupdate', this.timeUpdateHandler);
       })
       .catch((error) => {
         console.error('unable to load', item.name, item.url);
@@ -45,6 +51,7 @@ export class PlayerService {
   pause() {
     this.audio.pause();
     this.state.playing = false;
+    this.audio.removeEventListener('timeupdate', this.timeUpdateHandler);
   }
 
   setVolume(value: number) {
