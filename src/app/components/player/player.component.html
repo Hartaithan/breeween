@@ -26,8 +26,8 @@
         fontIcon="volume_up"
       ></mat-icon>
     </div>
-    <mat-slider min="0" max="100" step="1" value="50">
-      <input matSliderThumb />
+    <mat-slider min="0" max="1" step="0.10">
+      <input matSliderThumb value="0.2" (change)="handleVolume($event)" />
     </mat-slider>
   </div>
 </ng-container>

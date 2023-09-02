@@ -12,6 +12,7 @@ export class PlayerService {
   private state: PlayerState = {
     record: null,
     playing: false,
+    volume: 0.2,
     duration: undefined,
     currentTime: undefined,
   };
@@ -20,8 +21,9 @@ export class PlayerService {
     this.state,
   );
 
-  playRecord(item: RecordItem): void {
+  play(item: RecordItem): void {
     this.audio.src = item.url;
+    this.audio.volume = this.state.volume;
     this.audio
       .play()
       .then(() => {
@@ -35,7 +37,7 @@ export class PlayerService {
       });
   }
 
-  play() {
+  continue() {
     this.audio.play();
     this.state.playing = true;
   }
@@ -43,6 +45,11 @@ export class PlayerService {
   pause() {
     this.audio.pause();
     this.state.playing = false;
+  }
+
+  setVolume(value: number) {
+    this.state.volume = value;
+    this.audio.volume = value;
   }
 
   getState(): Observable<PlayerState> {

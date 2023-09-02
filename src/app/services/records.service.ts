@@ -30,11 +30,11 @@ export class RecordService {
     return collectionData(recordsQuery, idField) as Observable<RecordItem[]>;
   }
 
-  addTodo(record: NewRecordItem) {
+  addRecord(record: NewRecordItem) {
     return addDoc(this.recordsCollection, record);
   }
 
-  deleteTodo(id: string) {
+  deleteRecord(id: string) {
     const ref = doc(this.firestore, `records/${id}`);
     return deleteDoc(ref);
   }

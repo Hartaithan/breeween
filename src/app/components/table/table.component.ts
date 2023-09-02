@@ -36,6 +36,6 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   onRecordClick(record: RecordItem) {
-    this.player.playRecord(record);
+    this.player.play(record);
   }
 }

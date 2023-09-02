@@ -21,7 +21,12 @@ export class PlayerComponent {
     if (this.state.playing) {
       this.player.pause();
     } else {
-      this.player.play();
+      this.player.continue();
     }
+  }
+
+  handleVolume(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.player.setVolume(Number(target.value));
   }
 }
