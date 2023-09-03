@@ -5,6 +5,7 @@
   border-radius: 8px;
   overflow: hidden;
   background-color: #1e1e1e;
+  position: relative;
 }
 
 .mat-mdc {
@@ -37,10 +38,12 @@
 }
 
 .loader {
+  position: absolute;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 88px;
 }
 
 @media (max-width: 768px) {
