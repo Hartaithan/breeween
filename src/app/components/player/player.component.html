@@ -18,9 +18,17 @@
     </div>
     <div class="content">
       <p>{{ state.record.name }}</p>
-      <p>
-        {{ state.currentTime | duration }} / {{ state.duration | duration }}
-      </p>
+      <div class="progress">
+        <p>{{ state.currentTime | duration }}</p>
+        <mat-slider class="progress" min="0" [max]="state.duration" step="1">
+          <input
+            matSliderThumb
+            [value]="state.currentTime"
+            (change)="handleSeek($event)"
+          />
+        </mat-slider>
+        <p>{{ state.duration | duration }}</p>
+      </div>
     </div>
   </div>
   <div class="volume-control">

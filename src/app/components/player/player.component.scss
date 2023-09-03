@@ -41,6 +41,27 @@ button.button {
   flex: 1;
 }
 
+.progress {
+  display: flex;
+  .mdc-slider {
+    flex: 1;
+    height: auto;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  .mdc-slider__input {
+    height: 20px;
+  }
+  ::ng-deep .mdc-slider__thumb {
+    height: 20px !important;
+  }
+  ::ng-deep .mat-ripple {
+    display: none;
+  }
+  --mdc-slider-handle-height: 12px;
+  --mdc-slider-handle-width: 12px;
+}
+
 .volume {
   margin-right: 12px;
   &-control {
@@ -61,6 +82,7 @@ button.button {
 @media (max-width: 768px) {
   :host {
     padding: 12px;
+    gap: 18px;
   }
   .main {
     min-width: 100%;

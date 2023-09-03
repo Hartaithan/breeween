@@ -32,6 +32,11 @@ export class PlayerComponent implements OnDestroy {
     this.player.setVolume(Number(target.value));
   }
 
+  handleSeek(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.player.seekTo(Number(target.value));
+  }
+
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();

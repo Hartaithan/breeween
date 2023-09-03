@@ -112,6 +112,11 @@ export class PlayerService {
     this.audio.volume = value;
   }
 
+  seekTo(value: number) {
+    this.state.currentTime = value;
+    this.audio.currentTime = value;
+  }
+
   getState(): Observable<PlayerState> {
     return this.stateChange.asObservable();
   }
