@@ -1,23 +1,27 @@
 <ng-container *ngIf="state && state.record; else empty">
-  <div class="playback-control">
-    <button class="button" (click)="handlePlayback()">
-      <mat-icon
-        *ngIf="state.playing"
-        aria-hidden="false"
-        aria-label="play icon"
-        fontIcon="pause"
-      />
-      <mat-icon
-        *ngIf="!state.playing"
-        aria-hidden="false"
-        aria-label="play icon"
-        fontIcon="play_arrow"
-      />
-    </button>
-  </div>
-  <div class="content">
-    <p>{{ state.record.name }}</p>
-    <p>{{ state.currentTime | duration }} / {{ state.duration | duration }}</p>
+  <div class="main">
+    <div class="playback-control">
+      <button class="button" (click)="handlePlayback()">
+        <mat-icon
+          *ngIf="state.playing"
+          aria-hidden="false"
+          aria-label="play icon"
+          fontIcon="pause"
+        />
+        <mat-icon
+          *ngIf="!state.playing"
+          aria-hidden="false"
+          aria-label="play icon"
+          fontIcon="play_arrow"
+        />
+      </button>
+    </div>
+    <div class="content">
+      <p>{{ state.record.name }}</p>
+      <p>
+        {{ state.currentTime | duration }} / {{ state.duration | duration }}
+      </p>
+    </div>
   </div>
   <div class="volume-control">
     <div class="button volume">

@@ -1,11 +1,21 @@
 :host {
-  height: 100px;
+  min-height: 100px;
   border-radius: 8px;
   background-color: #1e1e1e;
   display: flex;
   padding: 12px 24px;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.playback-control {
+  margin-right: 12px;
 }
 
 .button {
@@ -45,5 +55,22 @@ button.button {
   & h3 {
     font-weight: 500;
     margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    padding: 12px;
+  }
+  .main {
+    min-width: 100%;
+    margin-top: 6px;
+  }
+  .volume {
+    margin-right: 12px;
+    &-control {
+      display: flex;
+      align-items: center;
+    }
   }
 }

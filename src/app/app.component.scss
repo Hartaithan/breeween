@@ -14,3 +14,10 @@
     max-width: 90%;
   }
 }
+
+@media (max-width: 768px) {
+  :host {
+    padding: 12px 0;
+    gap: 12px;
+  }
+}

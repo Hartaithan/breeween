@@ -45,3 +45,24 @@ button {
     opacity: 0.4;
   }
 }
+
+@media (max-width: 768px) {
+  form {
+    flex-direction: column;
+  }
+  .inputs {
+    width: 100%;
+  }
+  .mat-icon {
+    width: 18px;
+    height: 18px;
+  }
+  button {
+    flex-direction: row;
+    height: auto;
+    padding: 5px 10px;
+    width: 100%;
+    aspect-ratio: unset;
+    gap: 6px;
+  }
+}
