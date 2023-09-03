@@ -11,10 +11,22 @@
   &-table {
     width: 100%;
     background-color: #1e1e1e;
+    overflow-x: auto;
   }
   &-row {
     cursor: pointer;
   }
+}
+
+.mat-column {
+  &-id {
+    max-width: 220px;
+  }
+}
+
+.cdk-cell {
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .loader {

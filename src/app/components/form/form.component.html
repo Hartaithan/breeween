@@ -1,7 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="inputs">
     <input placeholder="Name" formControlName="name" />
-    <input placeholder="URL" formControlName="url" />
+    <input
+      placeholder="URL (only audio from public sources is supported)"
+      formControlName="url"
+    />
   </div>
   <button type="submit" [disabled]="!form.valid">
     <mat-icon
