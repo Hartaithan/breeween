@@ -3,13 +3,10 @@ import {
   CollectionReference,
   DocumentData,
   Firestore,
-  addDoc,
   collectionData,
-  deleteDoc,
-  doc,
   query,
 } from '@angular/fire/firestore';
-import { collection } from 'firebase/firestore';
+import { collection, doc, addDoc, deleteDoc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { NewRecordItem, RecordItem } from '../models/record.model';
 

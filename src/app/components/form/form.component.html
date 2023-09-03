@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="inputs">
+    <input placeholder="Name" formControlName="name" />
+    <input placeholder="URL" formControlName="url" />
+  </div>
+  <button type="submit" [disabled]="!form.valid">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="upload icon"
+      fontIcon="file_upload"
+    />
+    <p>Upload</p>
+  </button>
+</form>
