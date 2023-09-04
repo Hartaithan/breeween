@@ -80,6 +80,10 @@ export class PlayerService {
     events.forEach((event) => element.removeEventListener(event, handler));
   }
 
+  cleanEvents() {
+    this.removeEvents(this.audio, this.events, this.handler);
+  }
+
   play(item: RecordItem): void {
     this.audio.src = item.url;
     this.audio.volume = this.state.volume;

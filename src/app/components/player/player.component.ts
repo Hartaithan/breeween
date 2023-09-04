@@ -41,5 +41,6 @@ export class PlayerComponent implements OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    this.player.cleanEvents();
   }
 }
