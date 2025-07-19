@@ -10,6 +10,9 @@
     "lint": "ng lint",
     "format": "npx prettier --write ."
   },
+  "engines": {
+    "node": "22.x"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
